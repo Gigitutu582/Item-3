@@ -77,3 +77,6 @@ sendWishBtn.addEventListener('click', async () => {
         alert(error.message);
     }
 });
+        alert(error.message);
+    }
+});
