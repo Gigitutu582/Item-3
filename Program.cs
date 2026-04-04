@@ -49,7 +49,8 @@ void AddParticipant(string name)
     }
 }
 
-
+арр. UsestaticFiles(); 
+app.MapFallbackToFile("index.html")
 app.MapGet("/api/santa/register", () =>
 {
     return Results.Json(new { error = "Этот эндпоинт принимает только POST-запросы. Используйте POST с JSON {\"name\":\"Ваше имя\"}" },
@@ -142,6 +143,18 @@ app.MapGet("/api/santa/wish/{name}", (string name) =>
         return Results.Ok(new { name = realName, wish = wish ?? "" });
     }
 });
+app.MapGet("/api/participants",(DataStore data)=>data.GetAll());
+app.MapPost("/api/participants", (ParticipantDto dto, DataStore da
+ta) =>
+{
+data.Add(new Participant { Na
+me dto. Name });
+});
+return Results.Ok();
+app.MapPost("/api/draw", (DataSto
+re data) =>
+{
+var pairs = data. PerformSecre tSantaDraw(); return Results. Ok (pairs);
 
 app.Run();
 
